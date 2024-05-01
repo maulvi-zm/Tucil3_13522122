@@ -3,11 +3,18 @@
     "configurations": [
         {
             "type": "java",
+            "name": "BackendApplication",
+            "request": "launch",
+            "mainClass": "backend.src.main.java.com.backend.BackendApplication",
+            "projectName": "Tucil3_13522122_9fff1782"
+        },
+        {
+            "type": "java",
             "name": "Debug Main",
             "request": "launch",
             "mainClass": "Main",
             "projectName": "Tucil3_13522122_9fff1782",
-            "args": [], // Optional: specify any command-line arguments here
+            "args": [],
             "cwd": "${workspaceFolder}/src",
             "console": "internalConsole"
         }
