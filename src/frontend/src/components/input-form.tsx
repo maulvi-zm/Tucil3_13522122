@@ -19,10 +19,10 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 
 const FormSchema = z.object({
   start: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Start must be at least 2 characters.",
   }),
   goal: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Goal must be at least 2 characters.",
   }),
   algorithm: z.enum(["UCS", "AStar", "GBeFS"], {
     required_error: "Please select an algorithm.",
