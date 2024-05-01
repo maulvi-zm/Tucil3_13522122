@@ -54,43 +54,51 @@ export function InputForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className='w-2/3 space-y-6 flex flex-col'
       >
-        <FormField
-          control={form.control}
-          name='start'
-          render={({ field }) => (
-            <>
-              <FormItem>
-                <FormLabel>Start</FormLabel>
-                <FormControl>
-                  <Input placeholder='Fill the start word in here' {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is the starting point of the algorithm.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            </>
-          )}
-        />
+        <div className='flex justify-between w-full'>
+          <FormField
+            control={form.control}
+            name='start'
+            render={({ field }) => (
+              <>
+                <FormItem>
+                  <FormLabel>Start</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='Fill the start word in here'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is the starting point of the algorithm.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              </>
+            )}
+          />
 
-        <FormField
-          control={form.control}
-          name='goal'
-          render={({ field }) => (
-            <>
-              <FormItem>
-                <FormLabel>Goal</FormLabel>
-                <FormControl>
-                  <Input placeholder='Fill the goal word in here' {...field} />
-                </FormControl>
-                <FormDescription>
-                  This is the goal point of the algorithm.
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            </>
-          )}
-        />
+          <FormField
+            control={form.control}
+            name='goal'
+            render={({ field }) => (
+              <>
+                <FormItem>
+                  <FormLabel>Goal</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder='Fill the goal word in here'
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormDescription>
+                    This is the goal point of the algorithm.
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              </>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
