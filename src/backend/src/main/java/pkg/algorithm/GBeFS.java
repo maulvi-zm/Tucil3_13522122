@@ -1,50 +1,41 @@
-package pkg.solver;
+package pkg.algorithm;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
-import java.util.Comparator;
 import pkg.utils.Pair;
 import pkg.MapContainer;
 import pkg.solution.Solution;
+import pkg.utils.PairComparator;
 
-class PairComparator implements Comparator<Pair<List<String>, Integer>> {
-    public int compare(Pair<List<String>, Integer> p1, Pair<List<String>, Integer> p2) {
-        // Compare the second value of the pair
-        // return true if p1 < p2
-        return p1.getSecond() - p2.getSecond();
-    }
-}
-
-public class AStar {
+public class GBeFS {
     private MapContainer mapContainer;
 
-    public AStar(MapContainer mapContainer) {
+    public GBeFS(MapContainer mapContainer) {
         this.mapContainer = mapContainer;
     }
 
     public int CountScore(String word, String goal) {
         int score = 0;
         for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) != goal.charAt(i)) {
-                score++;
+            if (word.charAt(i) == goal.charAt(i)) {
+                score--;
             }
         }
         return score;
     }
 
     public Solution Solve(String start, String goal) {
+
         // Length of the start string != length of the goal string
         if (start.length() != goal.length()) {
             Solution solution = new Solution(2);
             return solution;
         }
-
         System.out.println("start: " + start);
         System.out.println("goal: " + goal);
-
         Map<String, List<String>> map = mapContainer.getMap(start.length() - 1);
         // Chek if the start and goal string is in the map
 
@@ -53,10 +44,10 @@ public class AStar {
             Solution solution = new Solution(1);
             return solution;
         }
-       
+
         int total_nodes = 0;
         long startTime = System.currentTimeMillis();
-        
+       
         Map<String, Boolean> visited = new HashMap<String, Boolean>();
         PriorityQueue<Pair<List<String>, Integer>> queue = new PriorityQueue<Pair<List<String>, Integer>>(new PairComparator());
 
@@ -72,8 +63,8 @@ public class AStar {
 
             if (currentWord.equals(goal)) {
                 long endTime = System.currentTimeMillis();
-                long time = (int) (endTime - startTime);
-                Solution solution = new Solution(time, currentPath.getFirst(), total_nodes);
+                long timeElapsed = endTime - startTime;
+                Solution solution = new Solution(timeElapsed, currentPath.getFirst(), total_nodes);
                 return solution;
             }
 
@@ -89,16 +80,15 @@ public class AStar {
                     score = newScore;
                 }
             }
-
-           
+    
             for (String word : map.get(currentWord)) {
-                    if (!visited.containsKey(word) && CountScore(word, goal) == score){
-                        List<String> newPath = new ArrayList<String>(currentPath.getFirst());
-                        newPath.add(word);
-                        queue.add(new Pair<List<String>, Integer>(newPath, currentPath.getSecond() + 1));
-                    }
+                if (!visited.containsKey(word) && CountScore(word, goal) == score){
+                    List<String> newPath = new ArrayList<String>(currentPath.getFirst());
+                    newPath.add(word);
+                    queue.add(new Pair<List<String>, Integer>(newPath, CountScore(word, goal)));
+                    break;
                 }
-        
+            }
         }
 
         // Path not found

@@ -1,13 +1,12 @@
 package com.tucil.backend;
 
- import pkg.FileHandler;
- import pkg.MapContainer;
- import pkg.MapFileMaker;
- 
- import pkg.solver.AStar;
- import pkg.solver.GBeFS;
- import pkg.solver.UCS;
- import pkg.solution.Solution;
+import pkg.FileHandler;
+import pkg.MapContainer;
+import pkg.MapFileMaker;
+import pkg.algorithm.AStar;
+import pkg.algorithm.GBeFS;
+import pkg.algorithm.UCS;
+import pkg.solution.Solution;
  
  public class Solver {
      private static MapContainer mapContainer;
@@ -36,15 +35,14 @@ package com.tucil.backend;
          switch (algorithm) {
              case "AStar":
                  return aStar.Solve(start, goal);
-            //  case "GBeFS":
-            //     return gBeFS.Solve(start, goal);
-            //      break;
-            //  case "UCS":
-            //      path = ucs.Solve(start, goal);
-            //      break;
-         }
+             case "GBeFS":
+                return gBeFS.Solve(start, goal);
+             case "UCS":
+                 return ucs.Solve(start, goal);
+             default:
+                return null;
 
-         return null;
+         }
      }
     
  

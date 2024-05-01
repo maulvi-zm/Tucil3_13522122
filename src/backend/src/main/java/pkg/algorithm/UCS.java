@@ -1,4 +1,4 @@
-package pkg.solver;
+package pkg.algorithm;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import pkg.solution.Solution;
 
 import pkg.MapContainer;
 
@@ -16,11 +17,12 @@ public class UCS {
         this.mapContainer = mapContainer;
     }
 
-    public List<String> Solve(String start, String goal) {
+    public Solution Solve(String start, String goal) {
 
         // Length of the start string != length of the goal string
         if (start.length() != goal.length()) {
-            return null;
+            Solution solution = new Solution(2);
+            return solution;
         }
         System.out.println("start: " + start);
         System.out.println("goal: " + goal);
@@ -29,9 +31,12 @@ public class UCS {
 
         if (!map.containsKey(start) || !map.containsKey(goal)) {
             System.out.println("start or goal not in dictionary or is a stop word.");
-            return null;
+            Solution solution = new Solution(1);
+            return solution;
         }
 
+        int total_nodes = 0;
+        long startTime = System.currentTimeMillis();
        
         Map<String, Boolean> visited = new HashMap<String, Boolean>();
         Queue<List<String>> queue = new LinkedList<List<String>>();
@@ -44,9 +49,13 @@ public class UCS {
             String currentWord = currentPath.get(currentPath.size() - 1);
 
             visited.put(currentWord, true);
+            total_nodes++;
 
             if (currentWord.equals(goal)) {
-                return currentPath;
+                long endTime = System.currentTimeMillis();
+                long time = endTime - startTime;
+                Solution solution = new Solution(time, currentPath, total_nodes);
+                return solution;
             }
 
             if (!map.containsKey(currentWord)) {
@@ -66,6 +75,7 @@ public class UCS {
         }
 
         // Path not found
-        return null;
+        Solution solution = new Solution(3);
+        return solution;
     }
 }
