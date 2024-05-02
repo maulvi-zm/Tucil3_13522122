@@ -37,7 +37,7 @@ public class Solution {
         } else if (error_code == 2) {
             this.error_message = "length of the start string != length of the goal string";
         } else if (error_code == 3) {
-            this.error_message = "unknown error";
+            this.error_message = "no solution found";
         }
     }
 
