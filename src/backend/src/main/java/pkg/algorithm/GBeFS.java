@@ -64,7 +64,10 @@ public class GBeFS {
             if (currentWord.equals(goal)) {
                 long endTime = System.currentTimeMillis();
                 long timeElapsed = endTime - startTime;
-                Solution solution = new Solution(timeElapsed, currentPath.getFirst(), total_nodes);
+                long memory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024;
+                Solution solution = new Solution(timeElapsed, currentPath.getFirst(), total_nodes, memory);
+                queue.clear();
+                visited.clear();
                 return solution;
             }
 

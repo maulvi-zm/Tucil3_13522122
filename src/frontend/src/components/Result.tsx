@@ -7,6 +7,7 @@ interface algorithmResult {
   total_nodes: number;
   error_code: number;
   error_message: string;
+  memory: number;
 }
 
 function Result({
@@ -24,6 +25,7 @@ function Result({
     total_nodes: 0,
     error_code: -1,
     error_message: "",
+    memory: 0,
   });
 
   useEffect(() => {
@@ -50,14 +52,15 @@ function Result({
   }
 
   return (
-    <div className='w-2/3 space-y-20'>
+    <div className='w-2/3 relative'>
       {result.error_code !== 0 ? (
         <p className='w-full text-center'>Error: {result.error_message}</p>
       ) : (
         <>
-          <div className=' flex justify-between text-xl text-bold'>
+          <div className=' flex flex-col justify-between text-xl text-bold gap-8 border-2 absolute -right-16 p-4 bg-white'>
             <p>Time: {result.time} ms</p>
             <p>Total Nodes: {result.total_nodes}</p>
+            <p>Memory: {result.memory} kB</p>
           </div>
           <div className='flex flex-col items-center'>
             <PathBlock path={result.path} />

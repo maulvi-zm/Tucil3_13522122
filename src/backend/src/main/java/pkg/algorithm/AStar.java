@@ -65,7 +65,10 @@ public class AStar {
             if (currentWord.equals(goal)) {
                 long endTime = System.currentTimeMillis();
                 long time =  endTime - startTime;
-                Solution solution = new Solution(time, currentPath.getFirst(), total_nodes);
+                long memory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024;
+                Solution solution = new Solution(time, currentPath.getFirst(), total_nodes, memory);
+                queue.clear();
+                visited.clear();
                 return solution;
             }
 

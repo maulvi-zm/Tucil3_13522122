@@ -19,13 +19,15 @@ public class Solution {
     // code 3: unknown error
     private int error_code;
     private String error_message;
+    private long memory;
 
-    public Solution(long time, List<String> path, int total_nodes) {
+    public Solution(long time, List<String> path, int total_nodes, long memory) {
         this.time = time;
         this.path = path;
         this.total_nodes = total_nodes;
         this.error_code = 0;
         this.error_message = "";
+        this.memory = memory;
     }
 
     public Solution(int error_code) {
@@ -58,6 +60,7 @@ public class Solution {
         node.put("total_nodes", total_nodes);
         node.put("error_code", error_code);
         node.put("error_message", error_message);
+        node.put("memory", memory);
 
         if (error_code != 0) {
             return node;

@@ -54,7 +54,10 @@ public class UCS {
             if (currentWord.equals(goal)) {
                 long endTime = System.currentTimeMillis();
                 long time = endTime - startTime;
-                Solution solution = new Solution(time, currentPath, total_nodes);
+                long memory = (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024;
+                Solution solution = new Solution(time, currentPath, total_nodes, memory);
+                queue.clear();
+                visited.clear();
                 return solution;
             }
 
