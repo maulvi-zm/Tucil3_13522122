@@ -57,7 +57,7 @@ function Result({
         <p className='w-full text-center'>Error: {result.error_message}</p>
       ) : (
         <>
-          <div className=' flex flex-col justify-between text-xl text-bold gap-8 border-2 absolute -right-16 p-4 bg-white'>
+          <div className=' flex flex-col justify-between text-xl text-bold gap-8 border-2 absolute -right-[25%] p-4 bg-white z-20'>
             <p>Time: {result.time} ms</p>
             <p>Total Nodes: {result.total_nodes}</p>
             <p>Memory: {result.memory} kB</p>
