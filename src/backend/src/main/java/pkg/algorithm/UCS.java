@@ -18,6 +18,7 @@ public class UCS {
     }
 
     public Solution Solve(String start, String goal) {
+        System.gc();
 
         // Length of the start string != length of the goal string
         if (start.length() != goal.length()) {

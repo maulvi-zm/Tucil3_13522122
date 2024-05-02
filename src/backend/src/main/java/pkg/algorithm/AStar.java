@@ -32,6 +32,7 @@ public class AStar {
 
     public Solution Solve(String start, String goal) {
         // Length of the start string != length of the goal string
+        System.gc();
         if (start.length() != goal.length()) {
             Solution solution = new Solution(2);
             return solution;
