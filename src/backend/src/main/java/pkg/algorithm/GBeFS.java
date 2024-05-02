@@ -49,7 +49,7 @@ public class GBeFS {
         long startTime = System.currentTimeMillis();
        
         Map<String, Boolean> visited = new HashMap<String, Boolean>();
-        PriorityQueue<Pair<List<String>, Integer>> queue = new PriorityQueue<Pair<List<String>, Integer>>(new PairComparator());
+        PriorityQueue<Pair<List<String>, Integer>> queue = new PriorityQueue<Pair<List<String>, Integer>>(new PairComparator<List<String>>());
 
         queue.add(new Pair<List<String>, Integer>(new ArrayList<String>(List.of(start)), this.CountScore(start, goal)));
 
@@ -76,10 +76,10 @@ public class GBeFS {
                 continue;
             }
 
-            int score = currentPath.getSecond();
+            int score = Integer.MAX_VALUE;
             for (String word : map.get(currentWord)) {
                 int newScore = CountScore(word, goal);
-                if (newScore < score) {
+                if (newScore < score && !visited.containsKey(word)) {
                     score = newScore;
                 }
             }
