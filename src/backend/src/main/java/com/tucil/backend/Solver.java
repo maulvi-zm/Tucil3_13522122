@@ -15,20 +15,20 @@ import pkg.solution.Solution;
      private static UCS ucs;
  
      public static void MakeMap() {
-         for (int i = 1; i <= 15; i++) {
- 
-             MapFileMaker mapFileMaker = new MapFileMaker("input/split/data" + i + ".txt");
+         for (int i = 2; i <= 8; i++) {
+             MapFileMaker mapFileMaker = new MapFileMaker("input/split/" + i + ".txt");
              mapFileMaker.MakeMap();
          }
      }
  
      public static void HandleFile() {
-         FileHandler fileHandler = new FileHandler("input/words.txt");
+         FileHandler fileHandler = new FileHandler("input/dictionary.txt");
          fileHandler.SplitFileByLength();
      }
 
      public Solution Solve(String start, String goal, String algorithm) {
 
+        // Convert to uppercase
         start = start.toUpperCase();
         goal = goal.toUpperCase();
 
@@ -47,6 +47,9 @@ import pkg.solution.Solution;
     
  
      public Solver() {
+            // HandleFile();
+            // MakeMap();
+
             mapContainer = new MapContainer();
             aStar = new AStar(mapContainer);
             gBeFS = new GBeFS(mapContainer);

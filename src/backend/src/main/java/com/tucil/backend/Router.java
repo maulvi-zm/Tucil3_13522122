@@ -14,9 +14,10 @@ public class Router {
     public JsonNode processData(@RequestParam("start") String start,
                               @RequestParam("goal") String target,
                               @RequestParam("algorithm") String algorithm) {
-        // Proses kedua query yang diterima dari frontend
+        // Solve the problem
         Solution path = BackendApplication.solver.Solve(start, target, algorithm);
 
+        // Return the solution as JSON
         return path.toJson();
     }
 

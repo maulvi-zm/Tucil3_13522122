@@ -28,8 +28,8 @@ public class UCS {
         System.out.println("start: " + start);
         System.out.println("goal: " + goal);
         Map<String, List<String>> map = mapContainer.getMap(start.length() - 1);
-        // Chek if the start and goal string is in the map
-
+        
+        // Check if the start and goal string is in the map
         if (!map.containsKey(start) || !map.containsKey(goal)) {
             System.out.println("start or goal not in dictionary or is a stop word.");
             Solution solution = new Solution(1);
@@ -62,8 +62,8 @@ public class UCS {
                 return solution;
             }
 
+            // If the current word is not in the dictionary or it doesn't have any neighbors
             if (!map.containsKey(currentWord)) {
-                System.out.print(currentPath);
                 System.out.print(currentWord);
                 System.out.println("currentWord not in dictionary.");
                 continue;
@@ -71,6 +71,7 @@ public class UCS {
 
             for (String word : map.get(currentWord)) {
                 if (!visited.containsKey(word)) {
+                    // Create a new path if the word is not visited
                     List<String> newPath = new ArrayList<String>(currentPath);
                     newPath.add(word);
                     queue.add(newPath);

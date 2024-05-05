@@ -37,8 +37,8 @@ public class GBeFS {
         System.out.println("start: " + start);
         System.out.println("goal: " + goal);
         Map<String, List<String>> map = mapContainer.getMap(start.length() - 1);
-        // Chek if the start and goal string is in the map
-
+        
+        // Check if the start and goal string is in the map
         if (!map.containsKey(start) || !map.containsKey(goal)) {
             System.out.println("start or goal not in dictionary or is a stop word.");
             Solution solution = new Solution(1);
@@ -76,6 +76,7 @@ public class GBeFS {
                 continue;
             }
 
+            // Find the word with the lowest score to get to the goal
             int score = Integer.MAX_VALUE;
             for (String word : map.get(currentWord)) {
                 int newScore = CountScore(word, goal);
@@ -85,6 +86,7 @@ public class GBeFS {
             }
     
             for (String word : map.get(currentWord)) {
+                // If the word has the same score as the current score, add it to the queue
                 if (!visited.containsKey(word) && CountScore(word, goal) == score){
                     List<String> newPath = new ArrayList<String>(currentPath.getFirst());
                     newPath.add(word);

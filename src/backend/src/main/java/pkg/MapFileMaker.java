@@ -23,6 +23,13 @@ public class MapFileMaker {
         }
     }
 
+    /**
+     * Checks if two strings have exactly one character difference.
+     *
+     * @param a the first string
+     * @param b the second string
+     * @return true if the strings have exactly one character difference, false otherwise
+     */
     private Boolean isOneElementDifferent(String a, String b) {
         int diff = 0;
 
@@ -39,6 +46,9 @@ public class MapFileMaker {
         return diff == 1;
     }
 
+    /**
+     * Reads a file, creates a map of words, and writes the map to a file.
+     */
     public void MakeMap() {
         List<String> words = new ArrayList<String>();
 
@@ -67,6 +77,12 @@ public class MapFileMaker {
         }
     }
 
+    /**
+     * Writes the given key-value pair to a file.
+     *
+     * @param key   the key to be written to the file
+     * @param value the list of values to be written to the file
+     */
     public void WriteToFile(String key, List<String> value) {
         String path = "input/map/" + key.length() + ".txt";
         File file = new File(path);

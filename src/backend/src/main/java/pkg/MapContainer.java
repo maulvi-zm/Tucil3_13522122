@@ -10,12 +10,17 @@ import java.util.Scanner;
 
 public class MapContainer {
     private List<Map<String, List<String>>> listOfMaps;
-
+        
+        /**
+         * Constructs a new MapContainer object.
+         * Initializes the listOfMaps with an ArrayList of maps.
+         * The first two elements of the list are set to null, while the rest are created using MapCreator.
+         */
     public MapContainer() {
         this.listOfMaps = new ArrayList<Map<String, List<String>>>();
 
-        for (int i = 0; i < 15; i++) {
-            if (i == 0) {
+        for (int i = 0; i < 7; i++) {
+            if (i == 0 || i == 1) {
                 this.listOfMaps.add(null);
                 continue;
             }

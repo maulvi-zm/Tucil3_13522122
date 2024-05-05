@@ -16,7 +16,7 @@ public class Solution {
     // code 0: no error
     // code 1: start or goal not in dictionary or is a stop word
     // code 2: length of the start string != length of the goal string
-    // code 3: unknown error
+    // code 3: no solution found
     private int error_code;
     private String error_message;
     private long memory;

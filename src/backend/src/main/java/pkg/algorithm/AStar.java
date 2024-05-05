@@ -42,11 +42,13 @@ public class AStar {
         System.out.println("goal: " + goal);
 
         Map<String, List<String>> map = mapContainer.getMap(start.length() - 1);
-        // Chek if the start and goal string is in the map
-
+        
+        // Check if the start and goal string is in the map
         if (!map.containsKey(start) || !map.containsKey(goal)) {
             System.out.println("start or goal not in dictionary or is a stop word.");
             Solution solution = new Solution(1);
+
+            // Return path not found
             return solution;
         }
        
@@ -57,7 +59,7 @@ public class AStar {
         Map<String, Integer> distanceMap = new HashMap<String, Integer>();
         Map<String, String> pathMap = new HashMap<String, String>();
 
-        // AKan menyimpan total cost dari start ke node tersebut
+        // Priority queue to store the word and its score
         PriorityQueue<Pair<String, Integer>> queue = new PriorityQueue<Pair<String, Integer>>(new PairComparator<String>());
 
         queue.add(new Pair<String, Integer>(start, this.CountCost(start, goal)));
@@ -103,6 +105,7 @@ public class AStar {
                 if (!visited.containsKey(child)){
 
                     if (!distanceMap.containsKey(child)) {
+                        // Add the child to the distanceMap and pathMap
                         distanceMap.put(child, newDistance);
                         pathMap.put(child, currentWord);
                         queue.add(new Pair<String, Integer>(child, newScore));

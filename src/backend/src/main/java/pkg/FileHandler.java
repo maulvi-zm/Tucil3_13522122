@@ -40,7 +40,7 @@ public class FileHandler {
     }
 
     private void WriteToFile(String data){
-        String fileName = "input/" + data.length() +  ".txt";
+        String fileName = "input/split/" + data.length() +  ".txt";
 
         File myObj= new File(fileName);
     
@@ -53,5 +53,10 @@ public class FileHandler {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        FileHandler fileHandler = new FileHandler("dictionary.txt");
+        fileHandler.SplitFileByLength();
     }
 }
