@@ -40,6 +40,7 @@ If you have docker, use this procedure
    ```
    docker compose up
    ```
+4. Open localhost:3000
 
 If you don't have docker, use this procedure
 
@@ -71,3 +72,4 @@ If you don't have docker, use this procedure
    ```
    java -jar /target/backend-0.0.1-SNAPSHOT.jar
    ```
+8. Open localhost:3000
