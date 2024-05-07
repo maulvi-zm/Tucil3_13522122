@@ -14,6 +14,11 @@ public class Router {
     public JsonNode processData(@RequestParam("start") String start,
                               @RequestParam("goal") String target,
                               @RequestParam("algorithm") String algorithm) {
+
+        // Delete trailing whitespaces
+        start = start.trim();
+        target = target.trim();
+
         // Solve the problem
         Solution path = BackendApplication.solver.Solve(start, target, algorithm);
 
